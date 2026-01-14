@@ -34,18 +34,6 @@ jobs:
       - name: Test
         run: dotnet test ./YungChingProject.slnx --no-restore --configuration Release --verbosity normal
 
-  publish-job:
-    needs: build-job
-    runs-on: ubuntu-latest
-    name: publish YungChinWebApi
-
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up .NET Core
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0.x'
-
       - name: dotnet publish
         run: dotnet publish ./YungChingProject.slnx -c Release -o "./publish" --no-build
 
@@ -54,11 +42,12 @@ jobs:
         with:
           name: yungchinwebapi-publish
           path: ./publish
+      
 
   # TODO: CD => Deploy to AP Server 
   # deploy:
   #   runs-on: windows-latest
-  #   needs: publish-job
+  #   needs: build-job
   #   if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/development')
   #   permissions:
   #     id-token: write #This is required for requesting the JWT
