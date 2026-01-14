@@ -40,6 +40,7 @@ namespace YungChingWebApi.Services
             // 轉換為 View
             var houseViews = houseViewModels.Select(vm => new HouseView
             {
+                Id = vm.Id,
                 Name = vm.Name,
                 Address = vm.Address,
                 Area = vm.Area,
@@ -53,11 +54,12 @@ namespace YungChingWebApi.Services
         public async Task<List<HouseView>> GetHotHouseListAsync()
         {
             // 從 Repository 取得 Top 5 熱門房屋
-            var houseViewModels = await _houseRepository.GetHotHousesAsync(5);
+            var houseViewModels = await _houseRepository.GetHotHousesAsync();
 
             // 轉換為 View
             var houseViews = houseViewModels.Select(vm => new HouseView
             {
+                Id = vm.Id,
                 Name = vm.Name,
                 Address = vm.Address,
                 Area = vm.Area,
@@ -98,6 +100,16 @@ namespace YungChingWebApi.Services
             };
 
             return houseDetailView;
+        }
+
+        public async Task DeleteDataAsync()
+        {
+            await _houseRepository.DeleteDataAsync();
+        }
+
+        public async Task CreateDataAsync()
+        {
+            await _houseRepository.CreateDataAsync();
         }
     }
 }

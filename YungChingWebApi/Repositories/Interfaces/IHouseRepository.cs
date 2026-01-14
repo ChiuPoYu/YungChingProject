@@ -27,5 +27,17 @@ namespace YungChingWebApi.Repositories.Interfaces
         /// 增加房屋查詢次數
         /// </summary>
         Task IncrementViewCountAsync(Guid id);
+
+        /// <summary>
+        /// 刪除假資料
+        /// </summary>
+        /// <returns></returns>
+        Task DeleteDataAsync();
+
+        /// <summary>
+        /// 建立假資料
+        /// </summary>
+        /// <returns></returns>
+        Task CreateDataAsync();
     }
 }
