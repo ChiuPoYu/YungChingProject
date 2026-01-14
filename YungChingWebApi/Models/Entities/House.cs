@@ -1,5 +1,8 @@
 namespace YungChingWebApi.Models.Entities
 {
+    /// <summary>
+    /// 房屋實體類別
+    /// </summary>
     public class House : BaseEntityConfig
     {
         /// <summary>
@@ -48,7 +51,7 @@ namespace YungChingWebApi.Models.Entities
         public Guid EmployeeId { get; set; }
 
         /// <summary>
-        /// 負責業務
+        /// 負責業務導航屬性
         /// </summary>
         public Employee Employee { get; set; }
 

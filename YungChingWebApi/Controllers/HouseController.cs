@@ -10,6 +10,7 @@ namespace YungChingWebApi.Controllers
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
+    [Produces("application/json")]
     public class HouseController : ControllerBase
     {
         private readonly IHouseService _houseService;
@@ -28,6 +29,8 @@ namespace YungChingWebApi.Controllers
         /// <param name="pageSize">每頁筆數（預設10）</param>
         /// <returns></returns>
         [HttpGet("GetHouseListByParam")]
+        [ProducesResponseType(typeof(ListResponse<HouseView>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ListResponse<HouseView>> GetHouseListByParam(
             string? address, 
             string? price,
@@ -43,7 +46,10 @@ namespace YungChingWebApi.Controllers
         /// 取得熱門房屋列表 (查詢次數 Top 5)
         /// </summary>
         /// <returns></returns>
+        /// <response code="200">成功取得熱門房屋列表</response>
         [HttpGet("GetHotHouse")]
+        [ProducesResponseType(typeof(ListResponse<HouseView>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ListResponse<HouseView>> GetHotHouseList()
         {
             var result = await _houseService.GetHotHouseListAsync();
@@ -55,7 +61,13 @@ namespace YungChingWebApi.Controllers
         /// </summary>
         /// <param name="Id">房屋ID</param>
         /// <returns></returns>
+        /// <response code="200">成功取得房屋</response>
+        /// <response code="404">查無房屋</response>
+        /// <response code="400">錯誤參數</response>
         [HttpGet("GetHouse/{Id}")]
+        [ProducesResponseType(typeof(DataResponse<HouseDetailView>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<DataResponse<HouseDetailView>> GetHouseById(Guid Id)
         {
             var result = await _houseService.GetHouseByIdAsync(Id);
