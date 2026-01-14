@@ -4,6 +4,7 @@ using System.Reflection;
 using YungChingWebApi.Data;
 using YungChingWebApi.Repositories;
 using YungChingWebApi.Repositories.Interfaces;
+using YungChingWebApi.Resources.Filters;
 using YungChingWebApi.Services;
 using YungChingWebApi.Services.Interfaces;
 
@@ -26,7 +27,11 @@ namespace YungChingWebApi
             // 註冊 Service
             builder.Services.AddScoped<IHouseService, HouseService>();
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(options =>
+            {
+                // 註冊全域 HttpExceptionFilter
+                options.Filters.Add<HttpExceptionFilter>();
+            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
 

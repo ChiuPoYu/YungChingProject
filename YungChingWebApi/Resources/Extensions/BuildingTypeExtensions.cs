@@ -1,6 +1,6 @@
 using YungChingWebApi.Models.Enums;
 
-namespace YungChingWebApi.Extensions
+namespace YungChingWebApi.Resources.Extensions
 {
     public static class BuildingTypeExtensions
     {
