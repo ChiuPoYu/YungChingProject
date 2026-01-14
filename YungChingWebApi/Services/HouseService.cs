@@ -1,7 +1,8 @@
-using WebApi.Models.ResponseModel;
-using YungChingWebApi.Extensions;
+using WebApi.Resources;
 using YungChingWebApi.Models.Views;
 using YungChingWebApi.Repositories.Interfaces;
+using YungChingWebApi.Resources.Exceptions;
+using YungChingWebApi.Resources.Extensions;
 using YungChingWebApi.Services.Interfaces;
 
 namespace YungChingWebApi.Services
@@ -76,7 +77,7 @@ namespace YungChingWebApi.Services
 
             if (houseDetailViewModel == null)
             {
-                return null;
+                throw new HttpException(404, ResponseMessage.HouseNotFound, ResponseMessage.HouseNotFoundCode);
             }
 
             // 增加查詢次數
