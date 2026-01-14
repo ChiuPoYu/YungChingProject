@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="YungChingWebApi.Tests/YungChingWebApi.Tests.csproj" />
   <Project Path="YungChingWebApi/YungChingWebApi.csproj" Id="8770ea97-b22f-415c-9f91-94bcdfe912fc" />
 </Solution>
