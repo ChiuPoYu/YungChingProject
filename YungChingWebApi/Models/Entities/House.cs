@@ -51,5 +51,10 @@ namespace YungChingWebApi.Models.Entities
         /// 負責業務
         /// </summary>
         public Employee Employee { get; set; }
+
+        /// <summary>
+        /// 查詢次數
+        /// </summary>
+        public int ViewCount { get; set; } = 0;
     }
 }
