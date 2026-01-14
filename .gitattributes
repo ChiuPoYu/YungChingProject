@@ -1,0 +1,146 @@
+###############################################################################
+# 跨平台開發：統一換行符號為 LF (Linux/macOS 標準)
+###############################################################################
+
+# 預設行為：自動偵測文字檔案，並統一為 LF
+* text=auto eol=lf
+
+###############################################################################
+# .NET / C# 專案檔案
+###############################################################################
+
+# C# 原始碼檔案
+*.cs text eol=lf diff=csharp
+*.csx text eol=lf
+
+# 專案檔案
+*.csproj text eol=lf
+*.sln text eol=lf
+*.props text eol=lf
+*.targets text eol=lf
+
+# Razor / Blazor
+*.cshtml text eol=lf
+*.razor text eol=lf
+
+###############################################################################
+# 設定檔 / YAML / JSON
+###############################################################################
+
+*.yml text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.xml text eol=lf
+*.config text eol=lf
+
+# appsettings
+appsettings*.json text eol=lf
+
+###############################################################################
+# Git / GitHub
+###############################################################################
+
+.gitattributes text eol=lf
+.gitignore text eol=lf
+.gitmodules text eol=lf
+.editorconfig text eol=lf
+
+# GitHub Actions
+.github/**/*.yml text eol=lf
+.github/**/*.yaml text eol=lf
+
+###############################################################################
+# 文件檔案
+###############################################################################
+
+*.md text eol=lf
+*.txt text eol=lf
+*.markdown text eol=lf
+
+# README 相關
+README* text eol=lf
+LICENSE* text eol=lf
+CHANGELOG* text eol=lf
+
+###############################################################################
+# Shell / 腳本檔案
+###############################################################################
+
+*.sh text eol=lf
+*.bash text eol=lf
+
+# Windows 批次檔（保留 CRLF）
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+###############################################################################
+# Web 前端檔案（如果有）
+###############################################################################
+
+*.html text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.js text eol=lf
+*.ts text eol=lf
+
+###############################################################################
+# 二進位檔案（不處理換行符號）
+###############################################################################
+
+# 圖片
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.bmp binary
+
+# 字型
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.eot binary
+
+# 文件
+*.pdf binary
+*.doc binary
+*.docx binary
+*.xls binary
+*.xlsx binary
+*.ppt binary
+*.pptx binary
+
+# 壓縮檔
+*.zip binary
+*.tar binary
+*.gz binary
+*.7z binary
+*.rar binary
+
+# .NET 二進位檔案
+*.dll binary
+*.exe binary
+*.pdb binary
+*.nupkg binary
+
+# 資料庫
+*.db binary
+*.sqlite binary
+
+###############################################################################
+# 合併策略
+###############################################################################
+
+# 專案檔案發生衝突時，標記為需要手動解決
+*.sln merge=binary
+*.csproj merge=binary
+
+###############################################################################
+# Diff 設定
+###############################################################################
+
+# C# diff 顯示更友善的方法簽名
+*.cs diff=csharp
