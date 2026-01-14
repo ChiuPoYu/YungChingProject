@@ -95,7 +95,7 @@ YungChingWebApi/
 
 ## 🔄 版本更新記錄
 
-### v1.1.0 - Initial Release (2024-01-14)
+### v1.0.1 - Initial Release (2024-01-14)
 **Branch**: `feature/CreateEntities`
 
 **新增功能：**

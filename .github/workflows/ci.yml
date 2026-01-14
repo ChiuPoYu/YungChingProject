@@ -35,7 +35,7 @@ jobs:
         run: dotnet test ./YungChingProject.slnx --no-restore --configuration Release --verbosity normal
 
       - name: dotnet publish
-        run: dotnet publish .YungChingWebApi/YungChingWebApi.cspoj -c Release -o "./publish" --no-build
+        run: dotnet publish ./YungChingWebApi/YungChingWebApi.cspoj -c Release -o "./publish" --no-build
 
       - name: Upload publish artifact
         uses: actions/upload-artifact@v4
