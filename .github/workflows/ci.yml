@@ -29,10 +29,10 @@ jobs:
         run: dotnet restore
       
       - name: Build
-        run: dotnet build ./YungChinProject.slnx --no-restore --configuration Release
+        run: dotnet build ./YungChingProject.slnx --no-restore --configuration Release
       
       - name: Test
-        run: dotnet test ./YungChinProject.slnx --no-restore --configuration Release --verbosity normal
+        run: dotnet test ./YungChingProject.slnx --no-restore --configuration Release --verbosity normal
 
   publish-job:
     needs: build-job
@@ -47,7 +47,7 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: dotnet publish
-        run: dotnet publish ./YungChinProject.slnx -c Release -o "./publish" --no-build
+        run: dotnet publish ./YungChingProject.slnx -c Release -o "./publish" --no-build
 
       - name: Upload publish artifact
         uses: actions/upload-artifact@v4
