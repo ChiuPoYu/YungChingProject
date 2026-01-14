@@ -3,11 +3,13 @@ name: Web Api CI/CD Pipeline
 on:
   push:
     branches:
+      - develop
       - staging
       - master
   pull_request:
     types: [opened, synchronize, reopened]
-    branches: 
+    branches:
+      - develop
       - staging
       - master
 # CI
