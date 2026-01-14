@@ -1,5 +1,5 @@
 
-namespace YungChinWebApi
+namespace YungChingWebApi
 {
     public class Program
     {

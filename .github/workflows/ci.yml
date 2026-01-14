@@ -1,0 +1,76 @@
+name: Web Api CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - staging
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: 
+      - staging
+      - master
+# CI
+jobs:
+  build-job:
+    name: Build and Test YungChinWebApi
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      
+      - name: Restore dependencies
+        run: dotnet restore
+      
+      - name: Build
+        run: dotnet build ./YungChingProject.slnx --no-restore --configuration Release
+      
+      - name: Test
+        run: dotnet test ./YungChingProject.slnx --no-restore --configuration Release --verbosity normal
+
+      - name: dotnet publish
+        run: dotnet publish .YungChingWebApi/YungChingWebApi.cspoj -c Release -o "./publish" --no-build
+
+      - name: Upload publish artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: yungchinwebapi-publish
+          path: ./publish
+      
+
+  # TODO: CD => Deploy to AP Server 
+  # deploy:
+  #   runs-on: windows-latest
+  #   needs: build-job
+  #   if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/development')
+  #   permissions:
+  #     id-token: write #This is required for requesting the JWT
+  #     contents: read #This is required for actions/checkout
+
+    # Azure Web App Deployment
+    # steps:
+    #   - name: Download artifact from build job
+    #     uses: actions/download-artifact@v4
+    #     with:
+    #       name: .net-app
+      
+    #   - name: Login to Azure
+    #     uses: azure/login@v2
+    #     with:
+    #       client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_D2976E5CAFD64D7BAF9D04CB6CFC0EF2 }}
+    #       tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_9F14B22E6DFD437082B219B25ECEEBDB }}
+    #       subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_CED302777EC7489489FAE963F477310C }}
+
+    #   - name: Deploy to Azure Web App
+    #     id: deploy-to-webapp
+    #     uses: azure/webapps-deploy@v3
+    #     with:
+    #       app-name: 'ChinAn-Api'
+    #       slot-name: 'Production'
+    #       package: .
