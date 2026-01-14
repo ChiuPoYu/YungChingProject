@@ -23,5 +23,17 @@ namespace YungChingWebApi.Services.Interfaces
         /// 根據ID取得房屋詳細資訊
         /// </summary>
         Task<HouseDetailView> GetHouseByIdAsync(Guid id);
+
+        /// <summary>
+        /// 刪除假資料
+        /// </summary>
+        /// <returns></returns>
+        Task DeleteDataAsync();
+
+        /// <summary>
+        /// 建立假資料
+        /// </summary>
+        /// <returns></returns>
+        Task CreateDataAsync();
     }
 }

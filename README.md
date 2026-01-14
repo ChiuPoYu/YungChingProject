@@ -29,7 +29,7 @@ dotnet restore
 
 ### 3. 設定資料庫連線字串
 
-在 `appsettings.Development.json` 中設定您的 SQL Server 連線：
+建立 `appsettings.Development.json` 中設定您的 SQL Server 連線：
 
 ```json
 {
@@ -95,8 +95,7 @@ YungChingWebApi/
 
 ## 🔄 版本更新記錄
 
-### v1.0.1 - Initial Release (2024-01-14)
-**Branch**: `feature/CreateEntities`
+### v1.0.0 - Initial (2026-01-14)
 
 **新增功能：**
 - ✅ 建立 Entity 實體類別 (BaseEntityConfig, Employee, House)
@@ -108,13 +107,7 @@ YungChingWebApi/
 **技術更新：**
 - 新增 EF Core 相關 NuGet 套件
 - 配置 SQL Server 連線
-
-**Pull 後須執行：**
-```bash
-dotnet restore
-dotnet ef database update
 ```
-
 ---
 
 ## 🐛 常見問題
