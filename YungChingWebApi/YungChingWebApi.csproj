@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>cb4b24f6-cef3-42d2-b7af-4ea332359ed4</UserSecretsId>
+    <UserSecretsId>271ec8b5-10bc-49a4-bc1e-e9c8586f5c45</UserSecretsId>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
   </PropertyGroup>
 
@@ -15,13 +15,13 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Models\Enums\" />
     <Folder Include="Models\Entities\" />
-    <Folder Include="Models\ViewModels\" />
+    <Folder Include="Models\Enums\" />
     <Folder Include="Models\Views\" />
-    <Folder Include="Repositories\interfaces\" />
-    <Folder Include="Services\Interfaces\" />
+    <Folder Include="Models\ViewModels\" />
+    <Folder Include="Repositories\Interfaces\" />
     <Folder Include="Resources\" />
+    <Folder Include="Services\Interfaces\" />
   </ItemGroup>
 
 </Project>
