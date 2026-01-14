@@ -1,15 +1,23 @@
 ﻿namespace WebApi.Models.ResponseModel;
 
-public class BaseResponse
+public abstract class BaseResponse
 {
-    public bool Success { get; protected set; }
-    public string? Message { get; protected set; }
-    public string? ErrorCode { get; protected set; }
+    public StatusInfo Status { get; protected set; }
 
     protected BaseResponse(bool success, string? message = null, string? errorCode = null)
     {
-        Success = success;
-        Message = message;
-        ErrorCode = errorCode;
+        Status = new StatusInfo
+        {
+            Success = success,
+            Message = message,
+            ErrorCode = errorCode
+        };
+    }
+
+    public class StatusInfo
+    {
+        public bool Success { get; set; }
+        public string? Message { get; set; }
+        public string? ErrorCode { get; set; }
     }
 }
