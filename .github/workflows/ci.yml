@@ -29,15 +29,15 @@ jobs:
         run: dotnet restore
       
       - name: Build
-        run: dotnet build ./YungChinWebApi/YungChinWebApi.sln --no-restore --configuration Release
+        run: dotnet build ./YungChinWebApi.slnx --no-restore --configuration Release
       
       - name: Test
-        run: dotnet test ./YungChinWebApi/YungChinWebApi.csproj --no-restore --configuration Release --verbosity normal
+        run: dotnet test ./YungChinWebApi.slnx --no-restore --configuration Release --verbosity normal
 
   publish-job:
     needs: build-job
     runs-on: ubuntu-latest
-    name: Build YungChinWebApi
+    name: publish YungChinWebApi
 
     steps:
       - uses: actions/checkout@v4
@@ -47,7 +47,7 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: dotnet publish
-        run: dotnet publish ./YungChinWebApi/YungChinWebApi.sln -c Release -o "./publish" --no-build
+        run: dotnet publish ./YungChinWebApi.slnx -c Release -o "./publish" --no-build
 
       - name: Upload publish artifact
         uses: actions/upload-artifact@v4
