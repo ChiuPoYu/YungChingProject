@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace YungChingWebApi.Models.Enums
 {
-    public enum BuildingType
+    public enum BuildingType : short
     {
         /// <summary>
         /// 公寓

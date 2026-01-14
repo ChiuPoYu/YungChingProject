@@ -5,6 +5,9 @@ using YungChingWebApi.Services.Interfaces;
 
 namespace YungChingWebApi.Controllers
 {
+    /// <summary>
+    /// 房屋頁面
+    /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     public class HouseController : ControllerBase
