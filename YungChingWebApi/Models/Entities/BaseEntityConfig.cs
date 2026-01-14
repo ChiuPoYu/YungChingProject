@@ -1,5 +1,8 @@
 namespace YungChingWebApi.Models.Entities
 {
+    /// <summary>
+    /// 實體基礎配置類別，包含通用欄位
+    /// </summary>
     public class BaseEntityConfig
     {
         /// <summary>
@@ -18,7 +21,7 @@ namespace YungChingWebApi.Models.Entities
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
         /// <summary>
-        /// 刪除日期
+        /// 刪除日期（DateTime.MaxValue 表示未刪除）
         /// </summary>
         public DateTime DeletedAt { get; set; } = DateTime.Now;
     }

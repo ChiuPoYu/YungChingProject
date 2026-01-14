@@ -7,15 +7,30 @@ using YungChingWebApi.Services.Interfaces;
 
 namespace YungChingWebApi.Services
 {
+    /// <summary>
+    /// 房屋業務邏輯層實作
+    /// </summary>
     public class HouseService : IHouseService
     {
         private readonly IHouseRepository _houseRepository;
 
+        /// <summary>
+        /// 建構函式
+        /// </summary>
+        /// <param name="houseRepository">房屋資料存取介面</param>
         public HouseService(IHouseRepository houseRepository)
         {
             _houseRepository = houseRepository;
         }
 
+        /// <summary>
+        /// 依條件取得房屋列表
+        /// </summary>
+        /// <param name="address">地址</param>
+        /// <param name="price">價格</param>
+        /// <param name="pageNumber">頁碼</param>
+        /// <param name="pageSize">每頁數量</param>
+        /// <returns>符合條件的房屋列表</returns>
         public async Task<List<HouseView>> GetHouseListByParamAsync(
             string? address, 
             string? price, 
@@ -51,6 +66,10 @@ namespace YungChingWebApi.Services
             return houseViews;
         }
 
+        /// <summary>
+        /// 取得熱門房屋列表
+        /// </summary>
+        /// <returns>熱門房屋列表</returns>
         public async Task<List<HouseView>> GetHotHouseListAsync()
         {
             // 從 Repository 取得 Top 5 熱門房屋
@@ -70,6 +89,12 @@ namespace YungChingWebApi.Services
             return houseViews;
         }
 
+        /// <summary>
+        /// 依 ID 取得房屋詳細資料
+        /// </summary>
+        /// <param name="id">房屋 ID</param>
+        /// <returns>房屋詳細資料</returns>
+        /// <exception cref="HttpException">若找不到對應房屋，則擲回 404 錯誤</exception>
         public async Task<HouseDetailView> GetHouseByIdAsync(Guid id)
         {
             // 從 Repository 取得詳細資料
@@ -102,11 +127,17 @@ namespace YungChingWebApi.Services
             return houseDetailView;
         }
 
+        /// <summary>
+        /// 刪除所有房屋資料（僅限測試使用）
+        /// </summary>
         public async Task DeleteDataAsync()
         {
             await _houseRepository.DeleteDataAsync();
         }
 
+        /// <summary>
+        /// 建立測試用房屋資料（僅限測試使用）
+        /// </summary>
         public async Task CreateDataAsync()
         {
             await _houseRepository.CreateDataAsync();

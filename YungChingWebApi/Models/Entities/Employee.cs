@@ -1,5 +1,8 @@
 namespace YungChingWebApi.Models.Entities
 {
+    /// <summary>
+    /// 員工實體類別
+    /// </summary>
     public class Employee : BaseEntityConfig
     {
         /// <summary>

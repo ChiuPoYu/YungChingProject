@@ -7,15 +7,30 @@ using YungChingWebApi.Repositories.Interfaces;
 
 namespace YungChingWebApi.Repositories
 {
+    /// <summary>
+    /// 房屋資料存取層實作
+    /// </summary>
     public class HouseRepository : IHouseRepository
     {
         private readonly SqlDbContext _context;
 
+        /// <summary>
+        /// 建構函式
+        /// </summary>
+        /// <param name="context">資料庫上下文</param>
         public HouseRepository(SqlDbContext context)
         {
             _context = context;
         }
 
+        /// <summary>
+        /// 根據條件非同步取得房屋資料
+        /// </summary>
+        /// <param name="address">地址</param>
+        /// <param name="maxPrice">最高總價</param>
+        /// <param name="pageNumber">頁碼</param>
+        /// <param name="pageSize">每頁筆數</param>
+        /// <returns>符合條件的房屋資料集</returns>
         public async Task<IEnumerable<HouseViewModel>> GetHousesByConditionAsync(
             string? address, 
             decimal? maxPrice, 
@@ -60,6 +75,11 @@ namespace YungChingWebApi.Repositories
             return houses;
         }
 
+        /// <summary>
+        /// 非同步取得熱門房屋資料
+        /// </summary>
+        /// <param name="topCount">取得筆數</param>
+        /// <returns>熱門房屋資料集</returns>
         public async Task<IEnumerable<HouseViewModel>> GetHotHousesAsync(int topCount = 5)
         {
             return await _context.Houses
@@ -77,6 +97,11 @@ namespace YungChingWebApi.Repositories
                 .ToListAsync();
         }
 
+        /// <summary>
+        /// 根據房屋 ID 非同步取得房屋詳細資料
+        /// </summary>
+        /// <param name="id">房屋 ID</param>
+        /// <returns>房屋詳細資料</returns>
         public async Task<HouseDetailViewModel?> GetHouseByIdAsync(Guid id)
         {
             return await _context.Houses
@@ -100,6 +125,10 @@ namespace YungChingWebApi.Repositories
                 .FirstOrDefaultAsync();
         }
 
+        /// <summary>
+        /// 非同步增加房屋瀏覽次數
+        /// </summary>
+        /// <param name="id">房屋 ID</param>
         public async Task IncrementViewCountAsync(Guid id)
         {
             var house = await _context.Houses.FindAsync(id);
@@ -110,6 +139,9 @@ namespace YungChingWebApi.Repositories
             }
         }
 
+        /// <summary>
+        /// 非同步刪除所有房屋及員工資料（軟刪除）
+        /// </summary>
         public async Task DeleteDataAsync()
         {
             var now = DateTime.Now;
@@ -131,6 +163,9 @@ namespace YungChingWebApi.Repositories
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// 非同步建立假資料
+        /// </summary>
         public async Task CreateDataAsync()
         {
             var now = DateTime.Now;
