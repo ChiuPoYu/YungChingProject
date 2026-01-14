@@ -28,7 +28,8 @@
     <Folder Include="Models\Views\" />
     <Folder Include="Models\ViewModels\" />
     <Folder Include="Repositories\Interfaces\" />
-    <Folder Include="Resources\" />
+    <Folder Include="Resources\Filter\" />
+    <Folder Include="Resources\Helpers\" />
     <Folder Include="Services\Interfaces\" />
   </ItemGroup>
 
