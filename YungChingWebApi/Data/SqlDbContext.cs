@@ -3,15 +3,33 @@ using YungChingWebApi.Models.Entities;
 
 namespace YungChingWebApi.Data
 {
+    /// <summary>
+    /// SQL Server 資料庫上下文
+    /// </summary>
     public class SqlDbContext : DbContext
     {
+        /// <summary>
+        /// 建構函式
+        /// </summary>
+        /// <param name="options">DbContext 選項</param>
         public SqlDbContext(DbContextOptions<SqlDbContext> options) : base(options)
         {
         }
 
+        /// <summary>
+        /// 員工資料集
+        /// </summary>
         public DbSet<Employee> Employees { get; set; }
+        
+        /// <summary>
+        /// 房屋資料集
+        /// </summary>
         public DbSet<House> Houses { get; set; }
 
+        /// <summary>
+        /// 模型建立時的配置
+        /// </summary>
+        /// <param name="modelBuilder">模型建構器</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -24,6 +42,9 @@ namespace YungChingWebApi.Data
                 entity.Property(e => e.Phone).HasMaxLength(20);
                 entity.Property(e => e.Ext).HasMaxLength(10);
                 entity.Property(e => e.Address).HasMaxLength(200);
+
+                // 全局查詢過濾器：自動過濾已刪除的資料
+                entity.HasQueryFilter(e => e.DeletedAt == DateTime.MaxValue);
             });
 
             // House 設定
@@ -43,6 +64,9 @@ namespace YungChingWebApi.Data
                     .WithMany()
                     .HasForeignKey(h => h.EmployeeId)
                     .OnDelete(DeleteBehavior.Restrict);
+
+                // 全局查詢過濾器：自動過濾已刪除的資料
+                entity.HasQueryFilter(h => h.DeletedAt == DateTime.MaxValue);
             });
         }
     }
