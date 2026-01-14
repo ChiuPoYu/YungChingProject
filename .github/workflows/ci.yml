@@ -56,13 +56,13 @@ jobs:
           path: ./publish
 
   # TODO: CD => Deploy to AP Server 
-  deploy:
-    runs-on: windows-latest
-    needs: publish-job
-    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/development')
-    permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
+  # deploy:
+  #   runs-on: windows-latest
+  #   needs: publish-job
+  #   if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/development')
+  #   permissions:
+  #     id-token: write #This is required for requesting the JWT
+  #     contents: read #This is required for actions/checkout
 
     # Azure Web App Deployment
     # steps:
